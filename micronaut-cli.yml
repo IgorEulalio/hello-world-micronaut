@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.igoreul
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [annotation-api, app-name, http-client, java, java-application, junit, logback, management, maven, netty-server, readme, shade, yaml]
