@@ -1,12 +1,16 @@
-package com.igoreul.example;
+package com.igoreul.mostrepeated;
 
 import io.micronaut.http.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Controller("/greetings")
-public class GreetingsController {
+@Controller("/3mostrepeat")
+public class MostRepeatedController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MostRepeatedController.class);
 
     private final List<String> FullList= Arrays.asList("aabcde", "aabchu",
             "uuickw", "uuhisoa",
@@ -15,9 +19,10 @@ public class GreetingsController {
             "cccd", "cccc", "cccd9", "cccc",
             "uuhbx", "uuibxt9", "uuilok", "uuizxed");
 
+
     @Get(uri="/", produces="text/plain")
     public List<String> index() {
-
+        LOG.info(FullList.toString());
         return returnTopRepeated(FullList, 2);
     }
 
@@ -28,7 +33,6 @@ public class GreetingsController {
         receiveStrings.forEach(
                 str -> {
                     var first3Chars = str.substring(0, 3);
-                    System.out.println(first3Chars);
                     if(mapeamentoDeStrings.containsKey(first3Chars)){
                         Integer indexOfThisString = mapeamentoDeStrings.get(first3Chars);
                         var newIndex = indexOfThisString + 1;
@@ -41,7 +45,6 @@ public class GreetingsController {
         );
 
         Map<String, Integer> orderedMapByValues = sortByValue(mapeamentoDeStrings,false, numbersOfElements);
-        System.out.println(orderedMapByValues);
         Set<String> strings = orderedMapByValues.keySet();
         List<String> collect = strings.stream().collect(Collectors.toList());
         return collect;

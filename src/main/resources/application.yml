@@ -3,3 +3,11 @@ micronaut:
     name: hello-world
   server:
     port: 5000
+jackson:
+  property-naming-strategy: SNAKE_CASE
+  serialization:
+    writeDateAsTimestamps: false
+    writeDatesWithZoneId: true
+  generator:
+    writeNumbersAsStrings: true
+    writeBigDecimalAsPlain: true

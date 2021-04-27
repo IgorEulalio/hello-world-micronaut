@@ -20,6 +20,7 @@
     <exec.mainClass>com.igoreul.Application</exec.mainClass>
     <micronaut.runtime>netty</micronaut.runtime>
     <graalvm.version>21.0.0</graalvm.version>
+    <lombok.version>1.18.12</lombok.version>
   </properties>
 
   <repositories>
@@ -30,6 +31,12 @@
   </repositories>
 
   <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+      <version>${lombok.version}</version>
+    </dependency>
     <dependency>
       <groupId>io.micronaut</groupId>
       <artifactId>micronaut-inject</artifactId>
@@ -92,6 +99,11 @@
       <artifactId>javax.annotation-api</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>javax.persistence-api</artifactId>
+      <version>2.2</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -106,7 +118,13 @@
         <configuration>
           <!-- Uncomment to enable incremental compilation -->
           <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
-          <annotationProcessorPaths combine.children="append"></annotationProcessorPaths>
+          <annotationProcessorPaths combine.children="append">
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
           <compilerArgs>
             <arg>-Amicronaut.processing.group=com.igoreul</arg>
             <arg>-Amicronaut.processing.module=helloWorld</arg>
